@@ -12,6 +12,6 @@ class FURXUserProfileInformation(models.Model):
     # profile_picture = models.CharField(max_length=1000)
 
 # need to come back to this-- property decorator?
-    @property
-    def full_name(self):
-        return f'{self.user.first_name} {self.user.last_name}'
+   # @property
+   # def full_name(self):
+    #   return f'{self.user.first_name} {self.user.last_name}'
