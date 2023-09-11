@@ -1,0 +1,21 @@
+[
+    {
+        "model": "furxapi.furx_profile_model",
+        "pk": 1,
+        "comments": "this is dummy data",
+        "fields": {
+            "user": 1,
+            "bio": "why am i writing a bio on a breakup site",
+            "day_of_breakup": "2023-09-01"
+        }
+    },
+    {
+        "model": "furxapi.furx_profile_model",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "bio": "can i add emojis",
+            "day_of_breakup": "2023-09-0"
+        }
+    }
+]
