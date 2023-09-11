@@ -1,6 +1,6 @@
 [
     {
-        "model": "furxapi.feeling_model",
+        "model": "furxapi.feeling",
         "pk": 1,
         "comments": "this is dummy data",
         "fields": {
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "furxapi.feeling_model",
+        "model": "furxapi.feeling",
         "pk": 2,
         "comments": "this is dummy data",
         "fields": {
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "furxapi.feeling_model",
+        "model": "furxapi.feeling",
         "pk": 3,
         "comments": "this is dummy data",
         "fields": {
@@ -24,16 +24,16 @@
         }
     },
     {
-        "model": "furxapi.feeling_model",
-        "pk": 3,
+        "model": "furxapi.feeling",
+        "pk": 4,
         "comments": "this is dummy data",
         "fields": {
             "feeling": "denial"
         }
     },
     {
-        "model": "furxapi.feeling_model",
-        "pk": 3,
+        "model": "furxapi.feeling",
+        "pk": 5,
         "comments": "this is dummy data",
         "fields": {
             "feeling": "acceptance"

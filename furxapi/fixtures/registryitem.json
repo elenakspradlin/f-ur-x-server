@@ -1,6 +1,6 @@
 [
     {
-        "model": "furxapi.registry_item_model",
+        "model": "furxapi.registryitem",
         "pk": 1,
         "comments": "this is dummy data",
         "fields": {
@@ -11,7 +11,7 @@
         }
     },
     {
-        "model": "furxapi.registry_item_model",
+        "model": "furxapi.registryitem",
         "pk": 1,
         "fields": {
             "user": 2,

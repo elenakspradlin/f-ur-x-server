@@ -1,24 +1,24 @@
 [
     {
-        "model": "blog_model",
+        "model": "furxapi.blog",
         "pk": 1,
         "comments": "this is dummy data for a stretch goal, also can i add emojis",
         "fields": {
             "user": 1,
             "blog_post": "i'm so fckn angry",
-            "better_than_yesterday": "true",
-            "feeling": "angry"
+            "better_than_yesterday": true,
+            "feeling": 1
         }
     },
     {
-        "model": "blog_model",
+        "model": "furxapi.blog",
         "pk": 2,
         "comments": "this is dummy data for a stretch goal, also can i add emojis",
         "fields": {
             "user": 2,
             "blog_post": "i'm so fckn sad",
-            "better_than_yesterday": "false",
-            "feeling": "sad"
+            "better_than_yesterday": false,
+            "feeling": 2
         }
     }
 ]
