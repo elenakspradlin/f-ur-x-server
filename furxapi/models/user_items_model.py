@@ -1,9 +1,10 @@
 # stretch goal
 from django.db import models
 from django.contrib.auth.models import User
-from .registry_item_model import RegistryItem
+from .item_model import Item
 
 
 class UserItems(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    item = models.OneToOneField(RegistryItem, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        "FURXUserProfileInformation", on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)

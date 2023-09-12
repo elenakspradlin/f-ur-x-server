@@ -7,7 +7,9 @@ class FURXUserProfileInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=200)
     day_of_breakup = models.DateField(default=date.today)
-
+    items = models.ManyToManyField(
+        "Item",
+        through='UserItems')
     # stretch goal
     # profile_picture = models.CharField(max_length=1000)
 

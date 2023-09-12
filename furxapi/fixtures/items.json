@@ -1,20 +1,17 @@
 [
     {
-        "model": "furxapi.registryitem",
+        "model": "furxapi.item",
         "pk": 1,
-        "comments": "this is dummy data",
         "fields": {
-            "user": 1,
             "picture": "https://kasasg.vtexassets.com/arquivos/ids/157685-800-800?v=1765116455&width=800&height=800&aspect=true",
             "price": "$419.99",
             "url": "https://stories.kitchenaid.com/countertop-appliances/stand-mixers/tilt-head-stand-mixers/p.2023-color-of-the-year-hibiscus-stand-mixer.ksm195pshi.html"
         }
     },
     {
-        "model": "furxapi.registryitem",
-        "pk": 1,
+        "model": "furxapi.item",
+        "pk": 2,
         "fields": {
-            "user": 2,
             "picture": "https://images.webfronts.com/cache/meabxxofdbhv.jpg?width=333&autorotate=true&mode=max",
             "price": "$49.99",
             "url": "https://www.kitchenaid.com/countertop-appliances/food-processors/choppers/p.3.5-cup-food-chopper.kfc3516pt.html"
