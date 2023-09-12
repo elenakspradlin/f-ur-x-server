@@ -16,7 +16,7 @@ class UserView(ViewSet):
             Response -- JSON serialized list of users
         """
 
-        users = User.objects.all()
+        users = FURXUserProfileInformation.objects.all()
         serialized = UserSerializer(users, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -27,7 +27,7 @@ class UserView(ViewSet):
             Response -- JSON serialized user record
         """
 
-        user = User.objects.get(pk=pk)
+        user = FURXUserProfileInformation.objects.get(pk=pk)
         serialized = UserSerializer(user, context={'request': request})
         return Response(serialized.data, status=status.HTTP_200_OK)
 
