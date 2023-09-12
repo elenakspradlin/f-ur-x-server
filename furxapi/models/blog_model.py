@@ -8,5 +8,4 @@ class Blog(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     blog_post = models.CharField(max_length=5000)
     better_than_yesterday = models.BooleanField(default=False)
-    feeling = models.ForeignKey(
-        "Feeling", on_delete=models.CASCADE)
+    feeling = models.OneToOneField(Feeling, on_delete=models.CASCADE)
