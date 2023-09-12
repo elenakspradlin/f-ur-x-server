@@ -1,0 +1,42 @@
+[
+    {
+        "model": "furxapi.feeling",
+        "pk": 1,
+        "comments": "this is dummy data",
+        "fields": {
+            "feeling": "sad"
+        }
+    },
+    {
+        "model": "furxapi.feeling",
+        "pk": 2,
+        "comments": "this is dummy data",
+        "fields": {
+            "feeling": "anger"
+        }
+    },
+    {
+        "model": "furxapi.feeling",
+        "pk": 3,
+        "comments": "this is dummy data",
+        "fields": {
+            "feeling": "bargaining"
+        }
+    },
+    {
+        "model": "furxapi.feeling",
+        "pk": 4,
+        "comments": "this is dummy data",
+        "fields": {
+            "feeling": "denial"
+        }
+    },
+    {
+        "model": "furxapi.feeling",
+        "pk": 5,
+        "comments": "this is dummy data",
+        "fields": {
+            "feeling": "acceptance"
+        }
+    }
+]
