@@ -1,4 +1,3 @@
-# stretch goal
 from django.db import models
 from django.contrib.auth.models import User
 from .registry_item_model import RegistryItem
