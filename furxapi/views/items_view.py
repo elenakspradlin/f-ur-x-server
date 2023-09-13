@@ -1,4 +1,4 @@
-"""View module for handling requests for customer data"""
+"""View module for handling requests for item data"""
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response

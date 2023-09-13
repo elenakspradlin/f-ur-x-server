@@ -16,15 +16,16 @@ Including another URLconf
 """
 from django.conf.urls import include
 from rest_framework import routers
-from furxapi.views import UserView, ItemView
+from furxapi.views import UserView, ItemView, BlogView
 from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
-from furxapi.views import register_user, login_user
+from furxapi.views import register_user, login_user, blog_view
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')
 router.register(r'items', ItemView, 'item')
+router.register(r'blogs', BlogView, 'blog')
 
 urlpatterns = [
     path('', include(router.urls)),
