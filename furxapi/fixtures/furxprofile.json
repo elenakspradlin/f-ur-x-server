@@ -1,6 +1,6 @@
 [
     {
-        "model": "furxapi.FURXUserProfileInformation",
+        "model": "furxapi.UserProfileInformation",
         "pk": 1,
         "fields": {
             "user": 1,
@@ -9,7 +9,7 @@
         }
     },
     {
-        "model": "furxapi.FURXUserProfileInformation",
+        "model": "furxapi.UserProfileInformation",
         "pk": 2,
         "fields": {
             "user": 2,

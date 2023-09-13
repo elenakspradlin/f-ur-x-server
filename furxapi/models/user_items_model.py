@@ -6,5 +6,5 @@ from .item_model import Item
 
 class UserItems(models.Model):
     profile = models.ForeignKey(
-        "FURXUserProfileInformation", on_delete=models.CASCADE)
+        "UserProfileInformation", on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)

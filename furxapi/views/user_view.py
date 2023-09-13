@@ -3,7 +3,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from furxapi.models import FURXUserProfileInformation
+from furxapi.models import UserProfileInformation
 
 
 class UserView(ViewSet):
@@ -16,7 +16,7 @@ class UserView(ViewSet):
             Response -- JSON serialized list of users
         """
 
-        users = FURXUserProfileInformation.objects.all()
+        users = UserProfileInformation.objects.all()
         serialized = UserSerializer(users, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -27,7 +27,7 @@ class UserView(ViewSet):
             Response -- JSON serialized user record
         """
 
-        user = FURXUserProfileInformation.objects.get(pk=pk)
+        user = UserProfileInformation.objects.get(pk=pk)
         serialized = UserSerializer(user, context={'request': request})
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -35,5 +35,5 @@ class UserView(ViewSet):
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for users"""
     class Meta:
-        model = FURXUserProfileInformation
+        model = UserProfileInformation
         fields = ('id', 'user', 'day_of_breakup')

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from datetime import date
 
 
-class FURXUserProfileInformation(models.Model):
+class UserProfileInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=200)
     day_of_breakup = models.DateField(default=date.today)
