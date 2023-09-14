@@ -36,4 +36,4 @@ class ItemSerializer(serializers.ModelSerializer):
     """JSON serializer for registry items"""
     class Meta:
         model = Item
-        fields = ('id', 'picture', 'price', 'url')
+        fields = ('id', 'name', 'picture', 'price', 'url')
