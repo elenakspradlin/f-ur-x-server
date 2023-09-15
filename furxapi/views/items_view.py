@@ -64,6 +64,11 @@ class ItemView(ViewSet):
         item.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
+    def destroy(self, request, pk):
+        item = Item.objects.get(pk=pk)
+        item.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class ItemSerializer(serializers.ModelSerializer):
     """JSON serializer for registry items"""
