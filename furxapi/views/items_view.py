@@ -31,6 +31,23 @@ class ItemView(ViewSet):
         serialized = ItemSerializer(item, context={'request': request})
         return Response(serialized.data, status=status.HTTP_200_OK)
 
+    def create(self, request):
+        """Handle POST requests for items
+
+        Returns:
+            Response: JSON serialized representation of newly created item
+        """
+        new_item = Item()
+        new_item.name = request.data['name']
+        new_item.picture = request.data['picture']
+        new_item.price = request.data['price']
+        new_item.url = request.data['url']
+        new_item.save()
+
+        serialized = ItemSerializer(new_item, many=False)
+
+        return Response(serialized.data, status=status.HTTP_201_CREATED)
+
 
 class ItemSerializer(serializers.ModelSerializer):
     """JSON serializer for registry items"""

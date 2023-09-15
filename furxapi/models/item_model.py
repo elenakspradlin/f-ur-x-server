@@ -6,4 +6,4 @@ class Item(models.Model):
     name = picture = models.CharField(max_length=1000)
     picture = models.CharField(max_length=1000)
     price = models.CharField(max_length=10)
-    url = models.URLField(max_length=200)
+    url = models.CharField(max_length=2000)
