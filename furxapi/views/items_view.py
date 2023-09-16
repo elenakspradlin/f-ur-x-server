@@ -48,6 +48,27 @@ class ItemView(ViewSet):
 
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
+    def update(self, request, pk=None):
+        """Handles PUT requests for single item
+
+        Returns:
+        Response-- No  response body, just 204 status code"""
+
+        item = Item.objects.get(pk=pk)
+        item.name = request.data['name']
+        item.picture = request.data['picture']
+        item.price = request.data['price']
+        item.url = request.data['url']
+
+        # Save the updated item
+        item.save()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk):
+        item = Item.objects.get(pk=pk)
+        item.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 
 class ItemSerializer(serializers.ModelSerializer):
     """JSON serializer for registry items"""
