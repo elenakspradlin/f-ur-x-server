@@ -18,6 +18,7 @@ class ItemView(ViewSet):
 
         items = Item.objects.all()
         serialized = ItemSerializer(items, many=True)
+
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None):

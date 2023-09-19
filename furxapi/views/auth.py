@@ -89,6 +89,14 @@ def register_user(request):
                 first_name=request.data['first_name'],
                 last_name=request.data['last_name']
             )
+
+            user_profile = UserProfileInformation.objects.create(
+                user=new_user,
+                bio=request.data['bio'],
+                day_of_breakup=request.data['day_of_breakup'],
+                items=request.data['items']
+            )
+
         except IntegrityError:
             return Response(
                 {'message': 'An account with that username already exists'},
@@ -107,7 +115,7 @@ def register_user(request):
         # new_user.save()
 
         # Use the REST Framework's token generator on the new user account
-        token = Token.objects.create(user=new_user)
+        token = Token.objects.create(user=user_profile.user)
         # Return the token to the client
         data = {'token': token.key}
         return Response(data)

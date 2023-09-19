@@ -4,6 +4,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from furxapi.models import UserProfileInformation
+from furxapi.models import Item
 
 
 class UserView(ViewSet):
@@ -17,6 +18,8 @@ class UserView(ViewSet):
         """
 
         users = UserProfileInformation.objects.all()
+        if "current" in request.query_params:
+            users = users.filter(user=request.auth.user)
         serialized = UserSerializer(users, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
@@ -32,8 +35,17 @@ class UserView(ViewSet):
         return Response(serialized.data, status=status.HTTP_200_OK)
 
 
+class ItemSerializer(serializers.ModelSerializer):
+    """JSON serializer for registry items"""
+    class Meta:
+        model = Item
+        fields = ('id', 'name', 'picture', 'price', 'url')
+
+
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for users"""
+    items = ItemSerializer(many=True)
+
     class Meta:
         model = UserProfileInformation
-        fields = ('id', 'user', 'day_of_breakup')
+        fields = ('id', 'user', 'day_of_breakup', 'items')
