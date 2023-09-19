@@ -20,7 +20,7 @@ from furxapi.views import UserView, ItemView, UserItemView, BlogView, FeelingVie
 from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
-from furxapi.views import register_user, login_user, blog_view, feeling_view, todolist_view
+from furxapi.views import register_user, login_user, blog_view, feeling_view, todolist_view, user_items_view
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', UserView, 'user')

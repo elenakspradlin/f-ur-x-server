@@ -94,7 +94,6 @@ def register_user(request):
                 user=new_user,
                 bio=request.data['bio'],
                 day_of_breakup=request.data['day_of_breakup'],
-                items=request.data['items']
             )
 
         except IntegrityError:

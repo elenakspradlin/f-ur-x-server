@@ -38,27 +38,21 @@ class UserItemView(ViewSet):
             )
 
     def create(self, request):
-        """Handle POST requests for user items
+        """Handle POST requests for creating a user items list
 
         Returns:
-            Response -- JSON serialized representation of newly created item
+            Response -- JSON serialized user items list
         """
-        item_id = request.data.get("id")
-        try:
-            item = Item.objects.get(pk=item_id)
-        except Item.DoesNotExist:
-            return Response(
-                {'message': 'Item not found'},
-                status=status.HTTP_404_NOT_FOUND
-            )
+        item = Item.objects.get(pk=request.data["item"])
+        profile = UserProfileInformation.objects.get(user=request.auth.user)
 
-        profile = UserProfileInformation.objects.get(user=request.user)
+        new_user_item = UserItem()
 
-        new_user_item = UserItem(profile=profile, item=item)
+        new_user_item.profile = profile
+        new_user_item.item = item
         new_user_item.save()
 
-        serialized = UserItemSerializer(new_user_item)
-
+        serialized = UserItemSerializer(new_user_item, many=False)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
