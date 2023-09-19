@@ -9,7 +9,7 @@ class UserProfileInformation(models.Model):
     day_of_breakup = models.DateField(default=date.today)
     items = models.ManyToManyField(
         "Item",
-        through='UserItems')
+        through='UserItem')
     # stretch goal
     # profile_picture = models.CharField(max_length=1000)
 
