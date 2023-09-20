@@ -20,22 +20,25 @@ class UserItemView(ViewSet):
 
         if "current" in request.query_params:
 
-            user_items = user_items.filter(profile=profile)
+            user_items = user_items.filter(profile=UserItem.profile)
 
         serialized = UserItemSerializer(user_items, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None):
-        """Handle GET requests for single user item
+        """Handle GET requests for a single user item owned by the current user
 
         Returns:
-            Response -- JSON serialized user item record
-        """
-
+        Response -- JSON serialized user item record
+    """
         try:
-            user_item = UserItem.objects.get(pk=pk)
+            # Retrieve the UserItem instance owned by the current user
+            user_item = UserItem.objects.filter(
+                profile__user=request.auth.user)
+
             serialized = UserItemSerializer(user_item)
             return Response(serialized.data, status=status.HTTP_200_OK)
+
         except UserItem.DoesNotExist:
             return Response(
                 {'message': 'UserItem not found'},
@@ -60,33 +63,18 @@ class UserItemView(ViewSet):
         serialized = UserItemSerializer(new_user_item, many=False)
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
-    def update(self, request, pk=None):
-        """Handles PUT requests for single user item
-
-        Returns:
-        Response -- No response body, just 204 status code
-        """
-        user_item = UserItem.objects.get(pk=pk)
-
-        item_id = request.data.get("id")
-        try:
-            item = Item.objects.get(pk=item_id)
-        except Item.DoesNotExist:
-            return Response(
-                {'message': 'Item not found'},
-                status=status.HTTP_404_NOT_FOUND
-            )
-
-        user_item.item = item
-        user_item.save()
-
-        return Response(None, status=status.HTTP_204_NO_CONTENT)
-
     def destroy(self, request, pk):
         try:
             user_item = UserItem.objects.get(pk=pk)
+            if user_item.profile.user != request.auth.user:
+                return Response(
+                    {'message': 'You do not have permission to delete this UserItem'},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
             user_item.delete()
             return Response(None, status=status.HTTP_204_NO_CONTENT)
+
         except UserItem.DoesNotExist:
             return Response(
                 {'message': 'UserItem not found'},
@@ -98,4 +86,5 @@ class UserItemSerializer(serializers.ModelSerializer):
     """JSON serializer for user items"""
     class Meta:
         model = UserItem
-        fields = ('id', 'item', 'profile')
+        fields = ('id', 'profile', 'item')
+        depth = 1
