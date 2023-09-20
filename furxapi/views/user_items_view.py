@@ -9,15 +9,20 @@ class UserItemView(ViewSet):
     """F UR X API user registry view"""
 
     def list(self, request):
-        """Handle GET requests to get all user's items
-
+        """Handle GET requests to get all the current user's items
         Returns:
+            Returns:
             Response -- JSON serialized list of user's items
         """
+        user_items = []
 
-        user_items = UserItem.objects.all()
+        user_items = UserItem.objects.filter(profile__user=request.auth.user)
+
+        if "current" in request.query_params:
+
+            user_items = user_items.filter(profile=profile)
+
         serialized = UserItemSerializer(user_items, many=True)
-
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None):
