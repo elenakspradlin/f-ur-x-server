@@ -25,25 +25,39 @@ class UserItemView(ViewSet):
         serialized = UserItemSerializer(user_items, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
 
-    def retrieve(self, request, pk=None):
-        """Handle GET requests for a single user item owned by the current user
 
-        Returns:
-        Response -- JSON serialized user item record
+def retrieve(self, request, pk=None):
+    """Handle GET requests for a single user item owned by the current user
+
+    Returns:
+    Response -- JSON serialized user item record including associated Item
     """
-        try:
-            # Retrieve the UserItem instance owned by the current user
-            user_item = UserItem.objects.filter(
-                profile__user=request.auth.user)
+    try:
+        # Retrieve the UserItem instance owned by the current user
+        user_item = UserItem.objects.get(
+            pk=pk, profile__user=request.auth.user)
 
-            serialized = UserItemSerializer(user_item)
-            return Response(serialized.data, status=status.HTTP_200_OK)
+        # Serialize UserItem and include the associated Item
+        serialized_user_item = UserItemSerializer(user_item)
 
-        except UserItem.DoesNotExist:
-            return Response(
-                {'message': 'UserItem not found'},
-                status=status.HTTP_404_NOT_FOUND
-            )
+        # Access the associated Item
+        item = user_item.item
+        # Assuming you have an ItemSerializer
+        serialized_item = ItemSerializer(item)
+
+        # Combine the UserItem and Item data in the response
+        response_data = {
+            'user_item': serialized_user_item.data,
+            'item': serialized_item.data
+        }
+
+        return Response(response_data, status=status.HTTP_200_OK)
+
+    except UserItem.DoesNotExist:
+        return Response(
+            {'message': 'UserItem not found'},
+            status=status.HTTP_404_NOT_FOUND
+        )
 
     def update(self, request, pk=None):
         """Handles PUT requests for single user item

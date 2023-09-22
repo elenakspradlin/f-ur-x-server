@@ -30,6 +30,7 @@ class ItemView(ViewSet):
 
         item = Item.objects.get(pk=pk)
         serialized = ItemSerializer(item, context={'request': request})
+
         return Response(serialized.data, status=status.HTTP_200_OK)
 
     def create(self, request):
