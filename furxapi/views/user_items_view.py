@@ -45,6 +45,22 @@ class UserItemView(ViewSet):
                 status=status.HTTP_404_NOT_FOUND
             )
 
+    def update(self, request, pk=None):
+        """Handles PUT requests for single user item
+
+        Returns:
+        Response-- No  response body, just 204 status code"""
+
+        user_item = UserItem.objects.get(pk=pk)
+        user_item.name = request.data['name']
+        user_item.picture = request.data['picture']
+        user_item.price = request.data['price']
+        user_item.url = request.data['url']
+
+        # Save the updated item
+        user_item.save()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
     def create(self, request):
         """Handle POST requests for creating a user items list
 
